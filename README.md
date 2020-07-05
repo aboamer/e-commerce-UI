@@ -25,3 +25,21 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## Learning objectives
+
+1-Creating observable to simulate http requests, to decouple backend progress from frontend progress
+
+## notes
+
+- angular.json scripts array contains JS needed such as jquery, bootstrap ... note that the order is important to avoid bugs
+- after angular 7, you don't need to decalre services in app.module -- you can provide it in the @injectable decorator
+- router: A service that provides navigation and URL manipulation capabilities
+
+## steps to create project
+
+1-Define your components, create routes to them
+2-fonts, bootstrap, styles defined in assets or links and put them in head tag in index.html
+
+## further reading
+1- https://blog.angular-university.io/angular-http/
