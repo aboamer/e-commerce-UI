@@ -7,14 +7,16 @@ import { DataService } from './data.service';
 })
 export class ProductService {
 
-  private SERVER_URL = "";
-  private dev = true;
+  private SERVER_URL = "https://example.com";
+  public dev = true;
 
-  constructor(private http: HttpClient, private dataService: DataService) { }
+  constructor(private http: HttpClient, private dataService: DataService) {
+    this.dev = dataService.dev;
+   }
 
   getAllProducts(numberOfResults = 10): any {
-    if (this.dev) {
-      console.log('amer');
+    console.log('amer');
+    if (this.dataService.dev) {
       return this.dataService.fetchProducts();
     }
     else {

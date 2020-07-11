@@ -6,6 +6,9 @@ import { Observable } from 'rxjs/internal/Observable';
 })
 export class DataService {
 
+  
+  public dev = true;
+
   products = [
     {id:"1",name:"shoes",image:"https://image.skechers.com/img/productimages/xlarge/232040_WNV.jpg"},
     {id:"2",name:"T-shirt",image:"https://bit.ly/3ipMOlm"},
@@ -17,11 +20,8 @@ export class DataService {
 
   fetchProducts(): Observable<any> {
     let observable = new Observable(observer => {
-      console.log('observe');
       setTimeout(() => {
-        console.log('observe 2');
         observer.next(this.productsResponse); // This method same as resolve() method from Angular 1
-        console.log("am done");
         observer.complete();//to show we are done with our processing
         // observer.error(new Error("error message"));
       }, 2000);

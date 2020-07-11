@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.productService.getAllProducts().subscribe((prods: {count: Number, products: any[]}) => {
         this.products = prods.products;
+        console.log(this.products);
     });
   }
 

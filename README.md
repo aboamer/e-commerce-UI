@@ -38,8 +38,49 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## steps to create project
 
-1-Define your components, create routes to them
-2-fonts, bootstrap, styles defined in assets or links and put them in head tag in index.html
+-Define your components, create routes to them
+-fonts, bootstrap, styles defined in assets or links and put them in head tag in index.html
 
 ## further reading
 1- https://blog.angular-university.io/angular-http/
+
+## testing notes
+- HttpClientTestingModule is located in @angular/common/http/testing
+- execute only one test: https://stackoverflow.com/questions/40683673/how-to-execute-only-one-test-spec-with-angular-cli
+- fdescribe and fit causes only functions marked this way to run
+- xdescribe and xit causes all but functions marked this way to run
+- Make sure you are not using `inject` before `R3TestBed.configureTestingModule`
+- response and response.body is very tricky
+- HttpTestingController to mock requests
+- we can pass inject function containing dependencies to fakeAsync .. or we can directly pass the function as we did in product.service.spec.
+- common modules to import in testing: imports: [HttpClientTestingModule, RouterTestingModule]
+- inject is Angular utility function that injects services into the test function. It takes two     params: an array of services that we want to inject and instances of those services.
+- TestBed.configureTestingModule is the same as @NgModule, but for test initialization.
+- HttpClientTestingModule is analog of HttpClientModule, but for testing purposes.
+- PhantomJS or ChromeHeadless is "Headless" or command-line interface browser. It has the same functionality as a regular web browser, but doesn't require UI and can be executed in a terminal. (faster)
+- To test a component we need to create the component's host element in the browser DOM: createComponent(): will create a fixture containing our component instance and its HTML reference.
+- We can access the raw component by calling its property componentInstance and its HTML reference by using nativeElement.
+- After setting the title in our test, we need to call detectChanges() so the template is updated with the new title we just set (because binding happens when Angular performs change detection).
+- To test a component calling a service: don't depened on HTTPClient - make a class mocking these services inside the test class overriding the methods you need to test
+    providers: [{ provide: ProductService, useClass: MockProductService }]
+
+
+## test resources
+- https://stackoverflow.com/questions/39791773/angular-2-4-6-7-unit-testing-with-router
+- https://medium.com/netscape/testing-with-the-angular-httpclient-api-648203820712
+- https://dev.to/mustapha/angular-unit-testing-101-with-examples-6mc
+- https://skryvets.com/blog/2018/02/18/unit-testing-angular-service-with-httpclient/
+
+
+## ideas
+- interceptor that replaces the request to API with a request to local data based on dev mode or not (environment file)
+
+## Knowledge
+- Karma is a test runner. It will automatically create a browser instance, run our tests, then gives us the results. It allows us to test our code in different browsers without any manual change in our part.
+- Jasmine is a popular Javascript testing framework. It comes with test doubles by using spies + assertions..
+- Mock objects are fake (simulated) objects that mimic the behavior of real objects in controlled ways.
+- A fixture is a wrapper around an instance of a component. With a fixture, we can have access to a component instance as well as its template.
+- Spies are useful for verifying the behavior of our components depending on outside inputs, without having to define those outside inputs. (for components that have services as a dependency)
+- AAA (Arrange-Act-Assert): you should divide your test method into three sections
+- beforeAll(): our tests won't be isolated because the component properties could be changed by each test --> so we use beforeEach()
+- TestBed is an API for testing that has a method configureTestingModule() for configuring a test module where we can import other Angular modules, components, pipes, directives, or services.
