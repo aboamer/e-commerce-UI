@@ -43,6 +43,9 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## further reading
 1- https://blog.angular-university.io/angular-http/
+2- https://indepth.dev/testing-angular-routing-components-with-the-routertestingmodule/
+3- https://medium.com/@ezequielavilagarcia/unit-testing-best-practices-testing-angular-applications-7e7888b0871d
+4- https://dev.to/mustapha/angular-unit-testing-101-with-examples-6mc
 
 ## testing notes
 - HttpClientTestingModule is located in @angular/common/http/testing
@@ -63,6 +66,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 - After setting the title in our test, we need to call detectChanges() so the template is updated with the new title we just set (because binding happens when Angular performs change detection).
 - To test a component calling a service: don't depened on HTTPClient - make a class mocking these services inside the test class overriding the methods you need to test
     providers: [{ provide: ProductService, useClass: MockProductService }]
+- to test router: mock router's method --> navigate: jasmine.createSpy('navigate') .. you can find it in home.component.spec
 
 
 ## test resources
@@ -70,7 +74,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 - https://medium.com/netscape/testing-with-the-angular-httpclient-api-648203820712
 - https://dev.to/mustapha/angular-unit-testing-101-with-examples-6mc
 - https://skryvets.com/blog/2018/02/18/unit-testing-angular-service-with-httpclient/
-
+- https://stackoverflow.com/questions/40300350/how-to-test-angular2s-router-navigate
 
 ## ideas
 - interceptor that replaces the request to API with a request to local data based on dev mode or not (environment file)
