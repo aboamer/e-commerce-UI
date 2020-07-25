@@ -9,9 +9,9 @@ import { of } from 'rxjs/internal/observable/of';
 
 class MockProductService {
   products = [
-    { id: "1", name: "test shoes", image: "https://image.skechers.com/img/productimages/xlarge/232040_WNV.jpg" },
-    { id: "2", name: "test T-shirt", image: "https://bit.ly/3ipMOlm" }];
-  getAllProducts(numberOfResults = 10): any {
+    {id:"1",name:"shoes",image:"https://image.skechers.com/img/productimages/xlarge/232040_WNV.jpg", description:"a shoe", price:20, quantity:58},
+    {id:"2",name:"T-shirt",image:"https://bit.ly/3ipMOlm", description:"a t-shirt", price:10, quantity:34}];
+    getAllProducts(numberOfResults = 10): any {
     console.log('calling test getAllProducts');
     return of({ count: 2, products: this.products });
   }

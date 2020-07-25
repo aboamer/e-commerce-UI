@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { DataService } from './data.service';
+import { Observable } from 'rxjs';
+import { ProductModelServer } from '../models/product.model';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +25,24 @@ export class ProductService {
       let params = new HttpParams()
         .set('limit', numberOfResults.toString());
       return this.http.get(this.SERVER_URL + '/products', { params });
+    }
+  }
+
+  getSingleProduct(id: number): Observable<ProductModelServer> {
+    if (this.dataService.dev) {
+      return this.dataService.fetchSingleProduct(id);
+    }
+    else {
+      return this.http.get<ProductModelServer>(this.SERVER_URL + '/product' + id);
+    }
+  }
+
+  getProductsFromCategory(catName: string): Observable<ProductModelServer[]> {
+    if (this.dataService.dev) {
+      return this.dataService.fetchProductsFromCategory(catName);
+    }
+    else {
+      return this.http.get<ProductModelServer[]>(this.SERVER_URL + '/product/category/' + catName);
     }
   }
 }

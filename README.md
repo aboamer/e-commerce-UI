@@ -35,6 +35,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 - angular.json scripts array contains JS needed such as jquery, bootstrap ... note that the order is important to avoid bugs
 - after angular 7, you don't need to decalre services in app.module -- you can provide it in the @injectable decorator
 - router: A service that provides navigation and URL manipulation capabilities
+- we don't use href in angular .. we use router link
 
 ## steps to create project
 
@@ -88,3 +89,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 - AAA (Arrange-Act-Assert): you should divide your test method into three sections
 - beforeAll(): our tests won't be isolated because the component properties could be changed by each test --> so we use beforeEach()
 - TestBed is an API for testing that has a method configureTestingModule() for configuring a test module where we can import other Angular modules, components, pipes, directives, or services.
+- Don't store critical information in local storage. We used it here to persist shopping cart while user is shopping.
